@@ -7,6 +7,12 @@ except ImportError:
 import time
 import atexit
 import numpy as np
+from logdecorator import log_on_start, log_on_end, log_on_error
+import logging
+
+logging_format = "%(asctime)s: %(message)s"
+logging.basicConfig(format=logging_format, level=logging.INFO, datefmt="% H:%M:%S")
+logging.getLogger().setLevel(logging.DEBUG)
 
 
 PERIOD = 4095
@@ -61,7 +67,7 @@ def set_motor_speed(motor, speed):
 
 
 def motor_speed_calibration(value):
-    global cali_speed_value,cali_dir_value
+    global cali_speed_value, cali_dir_value
     cali_speed_value = value
     if value < 0:
         cali_speed_value[0] = 0
@@ -140,12 +146,12 @@ def forward(speed, angle=9999):
         set_motor_speed(2, -1*speed)
     else:  # ccw is negative
         if angle < 0:  # negative angle(turn ccw) so left is inside and right is outside
-            motor_outside = 1
-            motor_inside = 0
+            motor_outside = 2
+            motor_inside = 1
             sign = -1
         else:  # positive angle(turn cw) so left is outside and right is inside
-            motor_outside = 0
-            motor_inside = 1
+            motor_outside = 1
+            motor_inside = 2
             sign = 1
 
         rads = sign * ((abs(angle) + 90) * np.pi / 180)

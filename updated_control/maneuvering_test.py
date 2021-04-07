@@ -13,15 +13,23 @@ def movement_a():
     stop()
     time.sleep(.5)
 
+
 def movement_b_left():
-    set_dir_servo_angle(30)
+    set_dir_servo_angle(-30)
     backward(60)
+    time.sleep(.5)
+    set_dir_servo_angle(30)
+    # backward(60)
     time.sleep(.5)
     set_dir_servo_angle(0)
-    backward(60)
-    time.sleep(.5)
+    time.sleep(.25)
     stop()
-    time.sleep(.5)
+    time.sleep(.2)
+
+
+def movement_b_right():
+    pass
+
 
 def movement_c():
     """
@@ -44,14 +52,17 @@ def movement_c():
     time.sleep(.5)
     stop()
     time.sleep(.5)
+    set_dir_servo_angle(-20)
+    forward(60, -20)
+    time.sleep(.5)
+    set_dir_servo_angle(0)
     forward(60)
-    time.sleep(1)
+    time.sleep(.5)
     stop()
     time.sleep(.5)
 
 
-
-if __name__=='__main__':
+if __name__ == '__main__':
 
     while True:
         action = input("what manuever?(a, b_l, b_r, c)  ")
@@ -60,6 +71,8 @@ if __name__=='__main__':
             movement_a()
         elif action == 'b_l':
             movement_b_left()
+        elif action == 'b_r':
+            movement_b_right()
         elif action == 'c':
             movement_c()
         elif action == 'x':
