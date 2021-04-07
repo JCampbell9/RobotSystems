@@ -1,8 +1,8 @@
 from picarx_improved import *
 import time
 
-set_dir_servo_angle(18)
-time.sleep(.5)
+set_dir_servo_angle(0) 
+time.sleep(1)
 
 forward(60)
 print("going forward...")
