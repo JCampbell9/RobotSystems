@@ -26,7 +26,7 @@ S1 = ADC('A1')
 S2 = ADC('A2')
 
 Servo_dir_flag = 1
-dir_cal_value = 0
+dir_cal_value = 18
 cam_cal_value_1 = 0
 cam_cal_value_2 = 0
 motor_direction_pins = [left_rear_dir_pin, right_rear_dir_pin]
@@ -138,14 +138,14 @@ def forward(speed, angle=9999):
     if angle == 9999:  # number well above expected range
         set_motor_speed(1, -1*speed)
         set_motor_speed(2, -1*speed)
-    else:  # assume ccw is positive, these may need to change depending on which way is positive
-        if angle < 0:  # negative angle(turn clockwise) so left is outside and right is inside
-            motor_outside = 0
-            motor_inside = 1
-            sign = -1
-        else:  # positive angle(turn ccw) so left is inside and right is outside
+    else:  # ccw is negative
+        if angle < 0:  # negative angle(turn ccw) so left is inside and right is outside
             motor_outside = 1
             motor_inside = 0
+            sign = -1
+        else:  # positive angle(turn cw) so left is outside and right is inside
+            motor_outside = 0
+            motor_inside = 1
             sign = 1
 
         rads = sign * ((abs(angle) + 90) * np.pi / 180)
@@ -154,8 +154,8 @@ def forward(speed, angle=9999):
         dist_outer = dist_arc + 0.06
         speed_inside = (dist_inner * speed) / dist_arc
         speed_outside = (dist_outer * speed) / dist_arc
-        set_motor_speed(motor_inside, speed_inside)
-        set_motor_speed(motor_outside, speed_outside)
+        set_motor_speed(motor_inside, -1*speed_inside)
+        set_motor_speed(motor_outside, -1*speed_outside)
 
 
 @atexit.register
