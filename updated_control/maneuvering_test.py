@@ -15,10 +15,10 @@ def movement_a():
 
 
 def movement_b_left():
-    set_dir_servo_angle(-30)
-    backward(60)
+    set_dir_servo_angle(-40)
+    backward(50)
     time.sleep(.5)
-    set_dir_servo_angle(30)
+    set_dir_servo_angle(40)
     # backward(60)
     time.sleep(.5)
     set_dir_servo_angle(0)
@@ -28,7 +28,15 @@ def movement_b_left():
 
 
 def movement_b_right():
-    pass
+    set_dir_servo_angle(40)
+    backward(50)
+    time.sleep(.5)
+    set_dir_servo_angle(-40)
+    time.sleep(.5)
+    set_dir_servo_angle(0)
+    time.sleep(.25)
+    stop()
+    time.sleep(.25)
 
 
 def movement_c():
@@ -38,22 +46,22 @@ def movement_c():
     """
 
     set_dir_servo_angle(-30)
-    forward(60, -30)
-    time.sleep(.5)
-    set_dir_servo_angle(0)
-    forward(60, 0)
+    forward(60)
+    time.sleep(.75)
+    #set_dir_servo_angle(0)
+   # forward(60, 0)
     time.sleep(.5)
     stop()
     time.sleep(.5)
-    set_dir_servo_angle(30)
+    set_dir_servo_angle(40)
     backward(60)
-    time.sleep(.5)
+    time.sleep(.75)
     set_dir_servo_angle(0)
     time.sleep(.5)
     stop()
     time.sleep(.5)
-    set_dir_servo_angle(-20)
-    forward(60, -20)
+    set_dir_servo_angle(0)
+    forward(60)
     time.sleep(.5)
     set_dir_servo_angle(0)
     forward(60)
