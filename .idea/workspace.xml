@@ -27,7 +27,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -123,6 +123,7 @@
       <workItem from="1617761262843" duration="2808000" />
       <workItem from="1617808262543" duration="519000" />
       <workItem from="1617808829212" duration="4899000" />
+      <workItem from="1617818594735" duration="7504000" />
     </task>
     <servers />
   </component>
