@@ -1,11 +1,6 @@
-import time
-#import sys
-#sys.path.append(r'/opt/ezblock')
-#from ezblock import __reset_mcu__
-#__reset_mcu__()
-#time.sleep(0.01)
-
 from picarx_improved import *
+import time
+
 
 def movement_a():
     set_dir_servo_angle(0)
@@ -33,15 +28,7 @@ def movement_b_left():
 
 
 def movement_b_right():
-    set_dir_servo_angle(40)
-    backward(50)
-    time.sleep(.5)
-    set_dir_servo_angle(-40)
-    time.sleep(.5)
-    set_dir_servo_angle(0)
-    time.sleep(.25)
-    stop()
-    time.sleep(.25)
+    pass
 
 
 def movement_c():
@@ -51,10 +38,10 @@ def movement_c():
     """
 
     set_dir_servo_angle(-30)
-    forward(60)
+    forward(60, -30)
     time.sleep(.75)
-    #set_dir_servo_angle(0)
-   # forward(60, 0)
+    set_dir_servo_angle(0)
+  
     time.sleep(.5)
     stop()
     time.sleep(.5)
@@ -65,8 +52,8 @@ def movement_c():
     time.sleep(.5)
     stop()
     time.sleep(.5)
-    set_dir_servo_angle(0)
-    forward(60)
+    set_dir_servo_angle(-20)
+    forward(60, -20)
     time.sleep(.5)
     set_dir_servo_angle(0)
     forward(60)
