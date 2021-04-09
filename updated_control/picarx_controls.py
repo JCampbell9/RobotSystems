@@ -16,6 +16,9 @@ logging.getLogger().setLevel(logging.DEBUG)
 
 
 class MotorControl:
+    """
+    Motor control class for the picar-x
+    """
 
     def __init__(self):
         PERIOD = 4095
@@ -43,7 +46,13 @@ class MotorControl:
             pin.prescaler(PRESCALER)
 
     def set_motor_speed(self, motor, speed):
-        motor -= 1
+        """
+        Sets the speed for a specified motor
+        :param motor: 1 left motor, 2 is right motor
+        :param speed: pwm value to set for speed
+        :return: none
+        """
+        motor -= 1  # from old code
         if speed >= 0:
             direction = 1 * self.cali_dir_value[motor]
         elif speed < 0:
@@ -61,26 +70,46 @@ class MotorControl:
             self.motor_speed_pins[motor].pulse_width_percent(speed)
 
     def set_dir_servo_angle(self, value):
+        """
+        Steers the car, positive is right turn negative is left turn
+        :param value: degrees to turn the wheel
+        :return: none
+        """
         self.drive_angle = value
         self.dir_servo_pin.angle(value + self.dir_cal_value)
 
     def forward(self, speed):
-        sign = self.angle / abs(self.angle)
-        dist_arc = -0.095 / np.cos(sign * ((abs(self.angle) + 90) * np.pi / 180))
+        """
+        Move the car forward
+        :param speed: pwm value for the speed
+        :return: none
+        """
+        sign = self.drive_angle / abs(self.drive_angle)  # gets if the angle is positive or negative
+        dist_arc = -0.095 / np.cos(sign * ((abs(self.drive_angle) + 90) * np.pi / 180))
         inside_wheel_speed = ((dist_arc - 0.06) * speed) / dist_arc
         outside_wheel_speed = ((dist_arc + 0.06) * speed) / dist_arc
-        if self.drive_angle < 0:  # turning left (ccw)
+        if sign < 0:  # turning left (ccw), negative
             self.set_motor_speed(1, -1 * inside_wheel_speed)  # Left wheel inside
             self.set_motor_speed(2, -1 * outside_wheel_speed)  # Right wheel outside
-        else:  # turning right (cw)
+        else:  # turning right (cw), positive
             self.set_motor_speed(1, -1 * outside_wheel_speed)  # left wheel outside
             self.set_motor_speed(2, -1 * inside_wheel_speed)  # right wheel inside
 
     def backwards(self, speed):
+        """
+        Move the car backwards
+        :param speed:
+        :return:
+        """
         self.set_motor_speed(1, speed)
         self.set_motor_speed(2, speed)
 
     def set_power(self, speed):
+        """
+        Set power
+        :param speed:
+        :return:
+        """
         self.set_motor_speed(1, speed)
         self.set_motor_speed(2, speed)
 

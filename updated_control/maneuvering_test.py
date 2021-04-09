@@ -1,13 +1,11 @@
-import time
-#import sys
-#sys.path.append(r'/opt/ezblock')
-#from ezblock import __reset_mcu__
-#__reset_mcu__()
-#time.sleep(0.01)
-
 from picarx_improved import *
 
+
 def movement_a():
+    """
+    Moves the car forward and backwards
+    :return:
+    """
     set_dir_servo_angle(0)
     forward(speed=60)
     time.sleep(3)
@@ -20,6 +18,10 @@ def movement_a():
 
 
 def movement_b_left():
+    """
+    Parallel parks to the left
+    :return:
+    """
     set_dir_servo_angle(-40)
     backward(50)
     time.sleep(.5)
@@ -33,6 +35,10 @@ def movement_b_left():
 
 
 def movement_b_right():
+    """
+    Parallel parks to the right
+    :return:
+    """
     set_dir_servo_angle(40)
     backward(50)
     time.sleep(.5)
