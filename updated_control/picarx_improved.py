@@ -160,8 +160,8 @@ def forward(speed, angle=9999):
             motor_inside = 2
             sign = 1
 
-        rads = sign * ((abs(angle) + 90) * np.pi / 180)
-        dist_arc = -0.095/np.cos(rads)  #distance between front and back wheels 9.5cm=0.095m
+        rads = ((90 - abs(angle)) * np.pi / 180)  # finds the top angle of the triangle
+        dist_arc = 0.095 * np.tan(rads)  # distance between front and back wheels 9.5cm=0.095m
         dist_inner = dist_arc - 0.06  # tire spacing is 12cm=0.12m so +/-0.06m
         dist_outer = dist_arc + 0.06
         speed_inside = (dist_inner * speed) / dist_arc
