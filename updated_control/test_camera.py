@@ -8,6 +8,8 @@ rawCapture = PiRGBArray(cam.camera)
 cam.camera.capture(rawCapture, format="bgr")
 image = rawCapture.array
 
+cam.camera.capture('base_image_test.jpg')
+
 cv2.imwrite('test_image.jpg', image)
 #frame = cv2.imread(image)
 
