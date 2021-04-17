@@ -47,7 +47,7 @@ class MotorControl:
         self.dir_cal_value = 5
 
         self.motor_direction_pins = [self.left_rear_dir_pin, self.right_rear_dir_pin]
-        self.motor_speed_pins = [self.motor_direction_pins, self.right_rear_pwm_pin]
+        self.motor_speed_pins = [self.left_rear_pwm_pin, self.right_rear_pwm_pin]
         self.cali_dir_value = [1, -1]
         self.cali_speed_value = [0, 0]
 
