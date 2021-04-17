@@ -12,6 +12,8 @@ import atexit
 import numpy as np
 from logdecorator import log_on_start, log_on_end, log_on_error
 import logging
+import cv2
+
 
 
 ##############################################################################################
@@ -217,12 +219,31 @@ class Controller:
 class CameraControl:
 
     def __init__(self):
+        self.camera_servo_pin1 = Servo(PWM('P0'))
+        self.camera_servo_pin2 = Servo(PWM('P1'))
+
+        self.Servo_dir_flag = 1
+        self.cam_cal_value_1 = 0
+        self.cam_cal_value_2 = 0
+
+    def camera_x_axis(self, value):
+        self.camera_servo_pin1.angle(-1 * (value + self.cam_cal_value_1))
+
+    def camera_y_axis(self, value):
+        self.camera_servo_pin2.angle(-1 * (value + self.cam_cal_value_2))
+
+
+class CameraSensor:
+
+    def __init__(self):
         pass
 
+    def edge_detector(self):
+        pass
 
-if __name__ == "__main__":
-    steer = Controller(20)
-    # steer.motor_controller.forward(50)
-    while True:
-        steer.line_follower()
-        time.sleep(.1)
+# if __name__ == "__main__":
+#     steer = Controller(20)
+#     # steer.motor_controller.forward(50)
+#     while True:
+#         steer.line_follower()
+#         time.sleep(.1)
