@@ -148,7 +148,7 @@ class SensorControl:
 
 class Interpreter:
 
-    def __init__(self, sensitivity=10, polarity=1):
+    def __init__(self, sensitivity=50, polarity=-1):
 
         # polarity -1 is the line is lighter, 1 the line is darker
         # sensitivity the needed delta between the sensor reading to determine an edge
