@@ -99,7 +99,10 @@ class MotorControl:
         self.differential_speed()
 
     def differential_speed(self):
-        sign = self.drive_angle / abs(self.drive_angle)  # gets if the angle is positive or negative
+        try:
+            sign = self.drive_angle / abs(self.drive_angle)  # gets if the angle is positive or negative
+        except ZeroDivisionError:
+            sign = 1
         dist_arc = 0.095 * np.tan((90 - abs(self.drive_angle)) * np.pi / 180)
         inside_wheel_speed = ((dist_arc - 0.06) * self.speed) / dist_arc
         outside_wheel_speed = ((dist_arc + 0.06) * self.speed) / dist_arc
