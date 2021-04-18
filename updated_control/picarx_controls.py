@@ -13,6 +13,7 @@ import numpy as np
 from logdecorator import log_on_start, log_on_end, log_on_error
 import logging
 import cv2
+import math
 
 
 
@@ -234,16 +235,88 @@ class CameraControl:
 
 
 class CameraSensor:
-
+    """
+    This class is based off of David Tian's guide found here: https://towardsdatascience.com/deeppicar-part-4-lane-following-via-opencv-737dd9e47c96
+    """
     def __init__(self):
-        pass
+
+        self.lower_blue = np.array([60, 0, 0])
+        self.upper_blue = np.array([150, 255, 255])
+
+    def steering_angle(self, image):
+        self.image = cv2.imread(image)
+        edge_mask = self.edge_detector()
+        crop_image = self.limit_image(edge_mask)
+        line_seg = self.line_seg_detector(crop_image)
+
+        average_line = self.line_joiner(line_seg)
+        # cv2.imshow("line_seg", line_segments)
+        center_line = self.make_points(self.image, average_line)
+        # line_img = self.display_lines(frame=self.image, lines=[center_line])
+        dir_angle = self.direction_angle(self.image, center_line)
+        return dir_angle
 
     def edge_detector(self):
-        pass
+        hsv = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, self.lower_blue, self.upper_blue)
+        edges = cv2.Canny(mask, 200, 400)
+        return edges
 
-# if __name__ == "__main__":
-#     steer = Controller(20)
-#     # steer.motor_controller.forward(50)
-#     while True:
-#         steer.line_follower()
-#         time.sleep(.1)
+    def limit_image(self, edge_img):
+        height, width = edge_img.shape
+        mask = np.zeros_like(edge_img)
+
+        polygon = np.array([[(0, height*.5), (width, height*.5), (width, height), (0, height)]], np.int32)
+        cv2.fillPoly(mask, polygon, 255)
+        crop_img = cv2.bitwise_and(edge_img, mask)
+        return crop_img
+
+    def line_seg_detector(self, frame):
+        rho = 1
+        angle = np.pi / 180
+        min_threshold = 10
+        line_segments = cv2.HoughLinesP(frame, rho, angle, min_threshold, np.array([]), minLineLength=10, maxLineGap=5)
+        return line_segments
+        # print(line_segments)
+
+    def line_joiner(self, lines):
+        line_list = []
+        print(lines[0])
+        for line_seg in lines:
+            for x1, y1, x2, y2 in line_seg:
+                fit = np.polyfit((x1, x2), (y1, y2), 1)
+                line_list.append((fit[0], fit[1]))
+
+        # print(line_list)
+        av = np.average(line_list, axis=0)
+
+        # print(av)
+        return av
+
+    def make_points(self, frame, line):
+        height, width, _ = frame.shape
+        slope, intercept = line
+        y1 = height  # bottom of the frame
+        y2 = int(y1 * 1 / 2)  # make points from middle of the frame down
+
+        # bound the coordinates within the frame
+        x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
+        x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
+        return [[x1, y1, x2, y2]]
+
+    def direction_angle(self, frame, av_line):
+        heading_image = np.zeros_like(frame)
+        height, width, _ = frame.shape
+
+        x1, _, x2, _ = av_line[0]
+        print(av_line)
+        offset_x = x2 - width/2
+        offset_y = int(height/2)
+        print(offset_x)
+
+        rad_angle = math.atan2(offset_y, offset_x)
+        # print(f'radiant angle = {rad_angle}')
+
+        deg_ang = 90 - int(rad_angle * 180 / np.pi)
+
+        return deg_ang
