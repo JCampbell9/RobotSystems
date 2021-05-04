@@ -200,21 +200,48 @@ class Interpreter:
         return robo_loc
 
 
+class UltrasonicSensor:
+
+    def __init__(self):
+        self.pin_D0 = Pin("D0")
+        self.pin_D1 = Pin('D1')
+
+    def get_distance(self):
+        distance = Ultrasonic(self.pin_D0, self.pin_D1).read()
+        return distance
+
+
+class UltrasonicInterpreter:
+
+    def __init__(self, safety_dist=1.0):
+        self.safety_dist = safety_dist
+
+    def obstacle(self, distance):
+        if distance - self.safety_dist <= 0:
+            return True
+        else:
+            return False
+
+
 class Controller:
 
     def __init__(self, scale_factor=20):
 
         self.scale_factor = scale_factor
-        self.line_detector = SensorControl()
-        self.line_interpreter = Interpreter()
+        # self.line_detector = SensorControl()
+        # self.line_interpreter = Interpreter()
         self.motor_controller = MotorControl()
 
-    def line_follower(self):
+    def line_follower(self, offset, obstacle=False):
 
-        offset = self.line_interpreter.robot_relative_to_line(self.line_detector.get_adc_values())
-        steering_angle = self.scale_factor * (1 * offset)
-        self.motor_controller.set_dir_servo_angle(steering_angle)
-        return steering_angle
+        if not obstacle:
+
+            # offset = self.line_interpreter.robot_relative_to_line(self.line_detector.get_adc_values())
+            steering_angle = self.scale_factor * (1 * offset)
+            self.motor_controller.set_dir_servo_angle(steering_angle)
+            # return steering_angle
+        else:
+            self.motor_controller.set_power(0)
 
 
 class CameraControl:

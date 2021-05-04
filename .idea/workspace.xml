@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34f3cc65-534b-4471-a7ca-4bb80ce9e9dd" name="Default Changelist" comment="" />
+    <list default="true" id="34f3cc65-534b-4471-a7ca-4bb80ce9e9dd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/updated_control/broadcast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/updated_control/picarx_controls.py" beforeDir="false" afterPath="$PROJECT_DIR$/updated_control/picarx_controls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +46,7 @@
       <recent name="C:\Users\socce\Desktop\git_repos\RobotSystems" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.line_follower_camera">
+  <component name="RunManager" selected="Python.multimodal_control">
     <configuration name="line_follower_camera" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RobotSystems" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -79,6 +83,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/updated_control/maneuvering_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="multimodal_control" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RobotSystems" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/updated_control" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/updated_control/multimodal_control.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -131,35 +157,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_steering_cali" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RobotSystems" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_steering_cali.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.multimodal_control" />
         <item itemvalue="Python.line_follower_camera" />
         <item itemvalue="Python.test_line_detect" />
         <item itemvalue="Python.picarx_controls" />
         <item itemvalue="Python.maneuvering_test" />
-        <item itemvalue="Python.test_steering_cali" />
       </list>
     </recent_temporary>
   </component>
@@ -192,14 +196,39 @@
       <workItem from="1618687261273" duration="1310000" />
       <workItem from="1618690008177" duration="18858000" />
       <workItem from="1618710741350" duration="450000" />
+      <workItem from="1618935877493" duration="39000" />
+      <workItem from="1618935942867" duration="48000" />
+      <workItem from="1619027588436" duration="4543000" />
+      <workItem from="1619036159896" duration="19000" />
+      <workItem from="1619102409230" duration="598000" />
+      <workItem from="1619464674944" duration="86000" />
+      <workItem from="1619562615885" duration="1193000" />
+      <workItem from="1619578992557" duration="4763000" />
+      <workItem from="1619636744374" duration="1507000" />
+      <workItem from="1619757775801" duration="139000" />
+      <workItem from="1619758343602" duration="434000" />
+      <workItem from="1619829664670" duration="477000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RobotSystems$test_line_detect.coverage" NAME="test_line_detect Coverage Results" MODIFIED="1618709105947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/updated_control" />
+    <SUITE FILE_PATH="coverage/RobotSystems$multimodal_control.coverage" NAME="multimodal_control Coverage Results" MODIFIED="1619583688967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/updated_control" />
     <SUITE FILE_PATH="coverage/RobotSystems$test_steering_cali.coverage" NAME="test_steering_cali Coverage Results" MODIFIED="1617732802933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RobotSystems$line_follower_camera.coverage" NAME="line_follower_camera Coverage Results" MODIFIED="1618710937263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/updated_control" />
     <SUITE FILE_PATH="coverage/RobotSystems$maneuvering_test.coverage" NAME="maneuvering_test Coverage Results" MODIFIED="1617816891640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/updated_control" />
